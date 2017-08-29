@@ -18,7 +18,7 @@ def poll_result(api, agent_name, taskID, timeout=120):
                     continue
                 else:
                     cont = False
-        timeout -= 1 # need to bail out in case of...
+        timeout -= 1 # need to bail out, just in case of...
     return result
 
 

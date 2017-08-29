@@ -1,8 +1,13 @@
-"""This module requires TARGET_HOST as input"""
-import os
+"""This module performs technique1 on TARGET_HOST   """
 
-print(os.environ["TARGET_HOST"])
 
-# set env variable eg. new session ID
-os.environ["TARGET_SESSION"] = "xyz"
-os.environ["TTP_RESULT"] = "some result for decision making " + os.environ["TARGET_HOST"]
+def run(targethost="127.0.0.1"):
+    """run(targethost="127.0.0.1")
+
+    Executes the technique with targethost address as input. """
+    print(targethost)
+    return "completed on " + targethost
+
+
+if __name__ == '__main__':
+    run()
