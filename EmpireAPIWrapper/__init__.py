@@ -1,3 +1,3 @@
 import requests
 from .wrapper import empireAPI
-from .Exceptions import *
+from .exceptions import *

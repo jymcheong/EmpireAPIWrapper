@@ -1,4 +1,4 @@
-from Exceptions import *
+from .exceptions import *
 def db_info(db_path):
     """
     Print the API Username, Password and Permanent token
