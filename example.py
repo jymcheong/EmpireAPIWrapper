@@ -12,13 +12,13 @@ def poll_result(api, agent_name, taskID, timeout=120):
         time.sleep(1)
         for result in r['results']:
             if taskID == (result['taskID']):
-                if not result['results'].startswith('Job'):
+                if not result['results'].startswith('Job'): # some modules start Jobs
                     cont = False
-                if 'completed!' not in result['results']:
+                if 'completed!' not in result['results']: # wait for job to complete
                     continue
                 else:
                     cont = False
-        timeout -= 1 # need to bail out, just in case of...
+        timeout -= 1 # need to bail out, just in case something goes wrong
     return result
 
 
