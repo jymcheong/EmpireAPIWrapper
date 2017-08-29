@@ -2,7 +2,7 @@ import time
 import EmpireAPIWrapper
 
 
-def poll_result(api, agent_name, taskID, timeout=300):
+def poll_result(api, agent_name, taskID, timeout=120):
     cont = True
     result = ""
     while cont:
