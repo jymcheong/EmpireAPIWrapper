@@ -1,7 +1,8 @@
-"""This module demonstrates procedure scripting based on import"""
-import stage2.windows.deliverPayload.technique1 # technique1.py uses the environment variable
+"""This module demonstrates procedure scripting"""
+import stage2.windows.deliverPayload.technique1
 
 try:
+    # every technique script implements a run function
     stage2.windows.deliverPayload.technique1.run("1.1.1.1")
     print(stage2.windows.deliverPayload.technique1.run("2.2.2.2"))
 

@@ -1,12 +1,12 @@
 """This module performs technique1 on TARGET_HOST   """
 
 
-def run(targethost="127.0.0.1"):
-    """run(targethost="127.0.0.1")
+def run(target_host="127.0.0.1"):
+    """run(target_host="127.0.0.1")
 
-    Executes the technique with targethost address as input. """
-    print(targethost)
-    return "completed on " + targethost
+    Executes the technique with target_host address as input. """
+    print(target_host)
+    return "completed on " + target_host
 
 
 if __name__ == '__main__':
