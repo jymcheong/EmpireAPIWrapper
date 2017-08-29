@@ -23,6 +23,7 @@ def poll_result(api, agent_name, taskID, timeout=300):
 
 
 if __name__ == "__main__":
+                                    # change to your IP/host & token
     api = EmpireAPIWrapper.empireAPI('172.30.1.22', token='54w31t76bry5f2aakkebof8f148qfl3juykfx5jn')
     agent = api.agents()
     agent_name = agent['agents'][0]['name']
