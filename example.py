@@ -23,6 +23,7 @@ if __name__ == "__main__":
        
         # module exception example (needs admin rights but session is non-elevated)
         api.module_exec('powershell/situational_awareness/host/computerdetails', options)
+        api.agent_get
 
     except Exception as e:
         print('Error: ' + str(e))
