@@ -4,10 +4,10 @@ import EmpireAPIWrapper
 
 if __name__ == "__main__":
                                     # change to your IP/host & (token or credentials)
-    api = EmpireAPIWrapper.empireAPI('172.30.1.66', uname='empireadmin', passwd='Password123')
+    api = EmpireAPIWrapper.empireAPI('empirec2', uname='empireadmin', passwd='Password123')
     agent = api.agents()
     agent_name = agent['agents'][0]['name']
-
+    
     try:
         # shell command example
         data = {'Agent': agent_name, 'command': 'date'} # date is a rather slow command
