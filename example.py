@@ -6,7 +6,7 @@ if __name__ == "__main__":
                                     # change to your IP/host & (token or credentials)
     API = empireAPI('empirec2', uname='empireadmin', passwd='Password123')
     AGENT = API.agents()
-    if 'agents' not in AGENT:
+    if 'agents' not in AGENT: # quit if no agents to work with
         exit
 
     AGENT_NAME = AGENT['agents'][0]['name']
