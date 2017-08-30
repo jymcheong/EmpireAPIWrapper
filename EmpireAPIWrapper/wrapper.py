@@ -350,28 +350,6 @@ class agents(object):
         final_url = '/api/agents/{}/results'.format(agent_name)
         return utilties._getURL(self, final_url)
 
-    def agent_get_results(self, agent_name, task_id, time_out=120):
-        """
-        Return tasking results for the agent
-        :param agent_name: Agent name as string
-        :param task_id: task ID from agent tasking
-        :rtype: dict
-        """
-        final_url = '/api/agents/{}/results'.format(agent_name)
-        _continue = True
-        _result = {}
-        while _continue:
-            _r = utilties._getURL(self, final_url)
-            for _result in _r['results']:
-                if task_id == _result['taskID']:
-                    if not _result['results'].startswith('Job') or ('completed!' in _result['results']):
-                        _continue = False
-            time.sleep(1)
-            time_out -= 1
-            if time_out < 0: 
-                return {'error': "time out!"}
-        return _result
-
     def agent_run_shell_cmd(self, agent_name, options):
         """
         Task agent to run shell commdn
@@ -409,6 +387,47 @@ class agents(object):
         """
         final_url = '/api/agents/{}/kill'.format(name)
         return utilties._getURL(self, final_url)
+
+    def agent_get_results(self, agent_name, task_id, time_out=120):
+        """
+        Return tasking results for the agent
+        :param agent_name: Agent name as string
+        :param task_id: task ID from agent tasking
+        :rtype: dict
+        """
+        final_url = '/api/agents/{}/results'.format(agent_name)
+        cont = True
+        result = {}
+        while cont:
+            r = utilties._getURL(self, final_url)
+            for result in r['results']:
+                if task_id == result['taskID']:
+                    if not result['results'].startswith('Job') or \
+                    ('completed!' in result['results']):
+                        cont = False
+            time.sleep(1)
+            time_out -= 1
+            if time_out < 0: 
+                return {'error': "time out!"}
+        return result
+
+    def agent_get_name(self, hostname_or_ipaddr):
+        """
+        Return agent name given hostname or ip address.
+        Empty string if not found.
+        :param hostname_or_ipaddr: Host name or IP address string
+        :rtype: string
+        """
+        agent_name = ""
+        r = self.agents()
+        if "agents" not in r: 
+            return agent_name
+        for agent in r['agents']:
+            if agent['hostname'].lower()    == hostname_or_ipaddr.lower() or \
+               agent['external_ip'].lower() == hostname_or_ipaddr.lower() or \
+               agent['internal_ip'].lower() == hostname_or_ipaddr.lower():
+               return agent['name']
+        return agent_name
 
 class empireAPI(utilties, admin, reporting, stagers, modules, agents):
 

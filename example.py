@@ -6,7 +6,14 @@ if __name__ == "__main__":
                                     # change to your IP/host & (token or credentials)
     API = empireAPI('empirec2', uname='empireadmin', passwd='Password123')
     AGENT = API.agents()
+    if 'agents' not in AGENT:
+        exit
+
     AGENT_NAME = AGENT['agents'][0]['name']
+    # this agent method is necessary we will want to target the correct host
+    # procedure-script only provides hostname or IP address; not agentName, which is dynamic
+    print('agent name: ' + API.agent_get_name('pec-WIN10PRO64'))
+    
     try:
         # shell command example
         DATA = {'Agent': AGENT_NAME, 'command': 'date'} # date is a rather slow command
