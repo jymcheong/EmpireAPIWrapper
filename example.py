@@ -1,10 +1,10 @@
 """This is a sample technique script using EmpireAPIWrapper"""
-import EmpireAPIWrapper
+from EmpireAPIWrapper import empireAPI
 
 
 if __name__ == "__main__":
                                     # change to your IP/host & (token or credentials)
-    API = EmpireAPIWrapper.empireAPI('empirec2', uname='empireadmin', passwd='Password123')
+    API = empireAPI('empirec2', uname='empireadmin', passwd='Password123')
     AGENT = API.agents()
     AGENT_NAME = AGENT['agents'][0]['name']
     try:
