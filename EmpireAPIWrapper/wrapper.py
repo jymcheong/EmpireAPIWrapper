@@ -1,4 +1,5 @@
 import json
+import time
 import requests
 from .exceptions import *
 
@@ -348,6 +349,28 @@ class agents(object):
         """
         final_url = '/api/agents/{}/results'.format(agent_name)
         return utilties._getURL(self, final_url)
+
+    def agent_get_results(self, agent_name, task_id, time_out=120):
+        """
+        Return tasking results for the agent
+        :param agent_name: Agent name as string
+        :param task_id: task ID from agent tasking
+        :rtype: dict
+        """
+        final_url = '/api/agents/{}/results'.format(agent_name)
+        _continue = True
+        _result = {}
+        while _continue:
+            _r = utilties._getURL(self, final_url)
+            for _result in _r['results']:
+                if task_id == _result['taskID']:
+                    if not _result['results'].startswith('Job') or ('completed!' in _result['results']):
+                        _continue = False
+            time.sleep(1)
+            time_out -= 1
+            if time_out < 0: 
+                return {'error': "time out!"}
+        return _result
 
     def agent_run_shell_cmd(self, agent_name, options):
         """
