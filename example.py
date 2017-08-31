@@ -1,10 +1,14 @@
-"""This is a sample technique script using EmpireAPIWrapper"""
+"""This is a sample/test script for EmpireAPIWrapper
+   Illustrate some of the typical things we do with Empire 
+   eg. get listeners, agents, exec shellcmd or modules, get taskid, task results
+"""
 from EmpireAPIWrapper import empireAPI
 
 
 if __name__ == "__main__":
                                     # change to your IP/host & (token or credentials)
     API = empireAPI('empirec2', uname='empireadmin', passwd='Password123')
+    LIS = API.listeners()
     AGENT = API.agents()
     if 'agents' not in AGENT: # quit if no agents to work with
         exit

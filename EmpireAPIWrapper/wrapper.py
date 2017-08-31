@@ -429,7 +429,17 @@ class agents(object):
                return agent['name']
         return agent_name
 
-class empireAPI(utilties, admin, reporting, stagers, modules, agents):
+class listeners(object):
+
+    def listeners(self):
+        """
+        Return a list of all listeners
+        :return: dict
+        """
+        full_url = '/api/listeners'
+        return utilties._getURL(self, full_url)
+
+class empireAPI(utilties, admin, reporting, stagers, modules, agents, listeners):
 
     def __init__(self, host, port=1337, verify=False, token=None, uname=None, passwd=None):
         """
