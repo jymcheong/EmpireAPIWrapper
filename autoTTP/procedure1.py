@@ -5,10 +5,10 @@
 """
 import stage2.deliver_payload.windows.technique1
 import stage2.deliver_payload.windows.technique2
-
+import empire_autocomplete 
 # autocomplete class is generated from empire source 
 # rightfully this is used inside technique's run function
-from stage2.code_execution.empire_autocomplete import *
+
 
 try:
     # every technique script implements a run function
@@ -17,10 +17,9 @@ try:
     
     # technique 2 is a folder module vs technique 1 which is a script
     stage2.deliver_payload.windows.technique2.something('a','b')
-
-    print(code_execution.invoke_metasploitpayload.path)
-    opt = {}  # required options are prefixed for easy listing via autocomplete
-    opt[code_execution.invoke_metasploitpayload.options.required_agent] = 'XXXX'
+    
+    options = empire_autocomplete.lateral_movement.invoke_dcom.options()
+    print(options.required_computername)
 
 except Exception as e:
     pass
