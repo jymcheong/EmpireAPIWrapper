@@ -3,7 +3,7 @@
    eg. get listeners, agents, exec shellcmd or modules, get taskid, task results
 """
 from EmpireAPIWrapper import empireAPI
-from autoTTP import empire_autocomplete
+import empire_autocomplete
 
 if __name__ == "__main__":
                                     # change to your IP/host & (token or credentials)
