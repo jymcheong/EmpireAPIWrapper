@@ -4,8 +4,7 @@
     supports APIs
 """
 import stage2.deliver_payload.windows.technique1
-import stage2.deliver_payload.windows.technique2
-import empire_autocomplete 
+import stage2.deliver_payload.windows.technique2 
 # autocomplete class is generated from empire source 
 # rightfully this is used inside technique's run function
 
@@ -17,9 +16,5 @@ try:
     
     # technique 2 is a folder module vs technique 1 which is a script
     stage2.deliver_payload.windows.technique2.something('a','b')
-    
-    options = empire_autocomplete.lateral_movement.invoke_dcom.options()
-    print(options.required_computername)
-
 except Exception as e:
     pass

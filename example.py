@@ -3,7 +3,7 @@
    eg. get listeners, agents, exec shellcmd or modules, get taskid, task results
 """
 from EmpireAPIWrapper import empireAPI
-
+from autoTTP import empire_autocomplete
 
 if __name__ == "__main__":
                                     # change to your IP/host & (token or credentials)
@@ -26,14 +26,14 @@ if __name__ == "__main__":
         print(API.agent_get_results(AGENT_NAME, TASKID))
 
         # module execution Job example
-        OPTIONS = {'Agent': AGENT_NAME} # ie. gather from module's "info"
-        TASKID = API.module_exec('powershell/situational_awareness/host/antivirusproduct', \
+        OPTIONS = {empire_autocomplete.situational_awareness.host_antivirusproduct.options.required_agent: AGENT_NAME} # ie. gather from module's "info"
+        TASKID = API.module_exec(empire_autocomplete.situational_awareness.host_antivirusproduct.path, \
                                 OPTIONS)['taskID']
         print('new taskID = ' + str(TASKID))
         print(API.agent_get_results(AGENT_NAME, TASKID))
 
         # module exception example (needs admin rights but session is non-elevated)
-        API.module_exec('powershell/situational_awareness/host/computerdetails', OPTIONS)
+        API.module_exec(empire_autocomplete.situational_awareness.host_computerdetails.path, OPTIONS)
 
     except Exception as e:
         print('Error: ' + str(e))
