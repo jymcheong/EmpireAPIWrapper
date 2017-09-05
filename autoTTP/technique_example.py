@@ -6,19 +6,18 @@ from EmpireAPIWrapper import empireAPI
 from empire_settings import *
 import empire_autocomplete
 
-if __name__ == "__main__":
-                                    # change to your IP/host & (token or credentials)
-    API = empireAPI(EMPIRE_SERVER, uname=EMPIRE_USER, passwd=EMPIRE_PWD)
-    AGENT = API.agents()
-    if 'agents' not in AGENT: # quit if no agents to work with
-        exit
+if __name__ == "__main__":    
+    try:                # change to your IP/host & (token or credentials)
+        API = empireAPI(EMPIRE_SERVER, uname=EMPIRE_USER, passwd=EMPIRE_PWD)
+        AGENT = API.agents()
+        if 'agents' not in AGENT: # quit if no agents to work with
+            exit
 
-    AGENT_NAME = API.agent_get_name('pec-WIN10PRO64', True)
-    # this agent method is necessary we will want to target the correct host
-    # procedure-script only provides hostname or IP address; not agentName, which is dynamic
-    print('agent name: ' + AGENT_NAME)
-    
-    try:
+        # this agent method is necessary we will want to target the correct host
+        # procedure-script only provides hostname or IP address; not agentName, which is dynamic
+        AGENT_NAME = API.agent_get_name('pec-WIN10PRO64', True)
+        print('agent name: ' + AGENT_NAME)
+
         # shell command example
         DATA = {'Agent': AGENT_NAME, 'command': 'date'} # date is a rather slow command
         TASKID = API.agent_run_shell_cmd(AGENT_NAME, DATA)['taskID']

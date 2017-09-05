@@ -27,5 +27,6 @@ try:
     print(AGENTNAME) # blank means no agent found    
     # technique 2 is a folder module vs technique 1 which is a script
     stage2.deliver_payload.windows.technique2.something('a','b')
+    
 except Exception as e:
     print("Oops: " + str(e))
