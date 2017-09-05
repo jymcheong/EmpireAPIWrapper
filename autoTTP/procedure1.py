@@ -5,12 +5,10 @@
 """
 import stage2.deliver_payload.windows.technique1
 import stage2.deliver_payload.windows.technique2 
-# autocomplete class is generated from empire source 
-# rightfully this is used inside technique's run function
-
 
 try:
     # every technique script implements a run function
+    # technique scripts encapsulate technique specific details
     stage2.deliver_payload.windows.technique1.run("1.1.1.1")
     print(stage2.deliver_payload.windows.technique1.run("2.2.2.2"))
     
