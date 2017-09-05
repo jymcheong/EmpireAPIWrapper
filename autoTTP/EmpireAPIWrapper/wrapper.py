@@ -402,8 +402,9 @@ class agents(object):
             r = utilties._getURL(self, final_url)
             for result in r['results']:
                 if task_id == result['taskID']:
-                    if not result['results'].startswith('Job') or \
-                    ('completed!' in result['results']):
+                    if not result['results'].startswith('Job'): 
+                        cont = False
+                    if ('\n' in result['results']):
                         cont = False
             time.sleep(1)
             time_out -= 1

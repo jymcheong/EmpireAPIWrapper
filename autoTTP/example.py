@@ -13,10 +13,10 @@ if __name__ == "__main__":
     if 'agents' not in AGENT: # quit if no agents to work with
         exit
 
-    AGENT_NAME = AGENT['agents'][0]['name']
+    AGENT_NAME = API.agent_get_name('pec-WIN10PRO64', True)
     # this agent method is necessary we will want to target the correct host
     # procedure-script only provides hostname or IP address; not agentName, which is dynamic
-    print('agent name: ' + API.agent_get_name('pec-WIN10PRO64'))
+    print('agent name: ' + AGENT_NAME)
     
     try:
         # shell command example
@@ -34,7 +34,9 @@ if __name__ == "__main__":
         print(API.agent_get_results(AGENT_NAME, TASKID))
 
         # module exception example (needs admin rights but session is non-elevated)
-        API.module_exec(empire_autocomplete.situational_awareness.host_computerdetails.path, OPTIONS)
+        TASKID = API.module_exec(empire_autocomplete.situational_awareness.host_computerdetails.path, OPTIONS)['taskID']
+        print('new taskID = ' + str(TASKID))
+        print(API.agent_get_results(AGENT_NAME, TASKID))
 
     except Exception as e:
         print('Error: ' + str(e))
