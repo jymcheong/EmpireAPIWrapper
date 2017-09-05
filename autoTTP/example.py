@@ -34,7 +34,8 @@ if __name__ == "__main__":
         print(API.agent_get_results(AGENT_NAME, TASKID))
 
         # module exception example (needs admin rights but session is non-elevated)
-        TASKID = API.module_exec(empire_autocomplete.situational_awareness.host_computerdetails.path, OPTIONS)['taskID']
+        TASKID = API.module_exec(empire_autocomplete.situational_awareness.host_computerdetails.path, \
+                                OPTIONS)['taskID']
         print('new taskID = ' + str(TASKID))
         print(API.agent_get_results(AGENT_NAME, TASKID))
 
