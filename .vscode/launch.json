@@ -144,7 +144,7 @@
             "program": "${workspaceRoot}/run.py",
             "cwd": "${workspaceRoot}",
             "args": [],
-            "env": {},
+            "env": {"PYTHONPATH": "/Users/jymcheong/Projects/EmpireAPIWrapper/autoTTP/EmpireAPIWrapper"},
             "envFile": "${workspaceRoot}/.env",
             "debugOptions": [
                 "WaitOnAbnormalExit",
