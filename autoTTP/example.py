@@ -26,7 +26,8 @@ if __name__ == "__main__":
         print(API.agent_get_results(AGENT_NAME, TASKID))
 
         # module execution Job example
-        OPTIONS = {empire_autocomplete.situational_awareness.host_antivirusproduct.options.required_agent: AGENT_NAME} # ie. gather from module's "info"
+        opts = empire_autocomplete.situational_awareness.host_antivirusproduct.options
+        OPTIONS = {opts.required_agent: AGENT_NAME} # ie. gather from module's "info"
         TASKID = API.module_exec(empire_autocomplete.situational_awareness.host_antivirusproduct.path, \
                                 OPTIONS)['taskID']
         print('new taskID = ' + str(TASKID))
