@@ -12,7 +12,7 @@ try:
     # use a common API context instead of creating new ones within Empire techniques
     API = empireAPI('empirec2', uname='empireadmin', passwd='Password123')
 
-    AGENTNAME = empire_wait_for_agent.run(API,'pec-WIN10PRO64')
+    AGENTNAME = empire_wait_for_agent.run(API,'pec-WIN10PRO64', False)
     print(AGENTNAME) # blank means no agent found
 
     # every technique script implements a run function

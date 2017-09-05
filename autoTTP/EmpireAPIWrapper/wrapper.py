@@ -411,7 +411,7 @@ class agents(object):
                 return {'error': "time out!"}
         return result
 
-    def agent_get_name(self, hostname_or_ipaddr):
+    def agent_get_name(self, hostname_or_ipaddr, high_integrity=False):
         """
         Return agent name given hostname or ip address.
         Empty string if not found.
@@ -426,7 +426,13 @@ class agents(object):
             if agent['hostname'].lower()    == hostname_or_ipaddr.lower() or \
                agent['external_ip'].lower() == hostname_or_ipaddr.lower() or \
                agent['internal_ip'].lower() == hostname_or_ipaddr.lower():
-               return agent['name']
+                if high_integrity is False and high_integrity is False:
+                    return agent['name']
+                else:
+                    if agent['high_integrity'] > 0 and high_integrity is True:
+                        return agent['name']
+                continue
+
         return agent_name
 
 class listeners(object):
