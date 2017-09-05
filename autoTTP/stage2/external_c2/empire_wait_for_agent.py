@@ -27,6 +27,7 @@ def run(API, host_name, need_privilege=False, time_out_sec = 180):
 # for unit testing of each technique
 if __name__ == '__main__':
     API = empireAPI('empirec2', uname='empireadmin', passwd='Password123')
-    print(run(API, 'pec-WIN10PRO64'))
-    print(run(API, 'pec-WIN10PRO64', True))
+    print(run(API, 'pec-WIN10PRO64')) # agent without high-integrity
+    print(run(API, 'pec-WIN10PRO64', True)) # agent with high-integrity
+    print(run(API, 'BLAH_BLAH')) # no such host
     
