@@ -3,11 +3,12 @@
    eg. get listeners, agents, exec shellcmd or modules, get taskid, task results
 """
 from EmpireAPIWrapper import empireAPI
+from empire_settings import *
 import empire_autocomplete
 
 if __name__ == "__main__":
                                     # change to your IP/host & (token or credentials)
-    API = empireAPI('empirec2', uname='empireadmin', passwd='Password123')
+    API = empireAPI(EMPIRE_SERVER, uname=EMPIRE_USER, passwd=EMPIRE_PWD)
     AGENT = API.agents()
     if 'agents' not in AGENT: # quit if no agents to work with
         exit

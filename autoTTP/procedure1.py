@@ -4,13 +4,14 @@
     supports APIs
 """
 from EmpireAPIWrapper import empireAPI
+from empire_settings import *
 import stage2.deliver_payload.windows.technique1
 import stage2.deliver_payload.windows.technique2 
 from stage2.external_c2 import empire_wait_for_agent
 
 try:
     # use a common API context instead of creating new ones within Empire techniques
-    API = empireAPI('empirec2', uname='empireadmin', passwd='Password123')
+    API = empireAPI(EMPIRE_SERVER, uname=EMPIRE_USER, passwd=EMPIRE_PWD)
 
     # every technique script implements a run function
     # technique scripts encapsulate technique specific details
