@@ -442,6 +442,29 @@ class listeners(object):
         full_url = '/api/listeners'
         return utilties._getURL(self, full_url)
 
+    def listeners_get_first(self):
+        """
+        Return name of the first listener
+        :return type: str or None if no listeners
+        """
+        ls = self.listeners()
+        if len(ls['listeners']) == 0:
+            raise ValueError('no listeners')
+        else:
+            return ls['listeners'][0]['name']
+    
+    def listeners_exist(self, name):
+        """
+        Return true give listener name exists
+        :return type: boolean
+        :raise error: if there are no listeners
+        """
+        ls = self.listeners()
+        if name in str(ls):
+            return True
+        else:
+            return False
+
 class empireAPI(utilties, admin, reporting, stagers, modules, agents, listeners):
 
     def __init__(self, host, port=1337, verify=False, token=None, uname=None, passwd=None):

