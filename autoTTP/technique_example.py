@@ -11,7 +11,7 @@ if __name__ == "__main__":
         API = empireAPI(EMPIRE_SERVER, uname=EMPIRE_USER, passwd=EMPIRE_PWD)
         AGENT = API.agents()
         if 'agents' not in AGENT: # quit if no agents to work with
-            exit
+            raise ValueError('no agents to work with')
 
         # this agent method is necessary we will want to target the correct host
         # procedure-script only provides hostname or IP address; not agentName, which is dynamic
@@ -39,5 +39,5 @@ if __name__ == "__main__":
         print(API.agent_get_results(AGENT_NAME, TASKID))
 
     except Exception as e:
-        print('Error: ' + str(e))
+        print('Oops: ' + str(e))
     
