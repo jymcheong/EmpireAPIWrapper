@@ -4,6 +4,7 @@ run both at technique & procedural script (many folders above) layers,
 so I used symbolic link which seems to work but it's ugly
 """
 from EmpireAPIWrapper import empireAPI
+from empire_settings import *
 
 def run(API, host_name, need_privilege=False, time_out_sec = 180):
     """
@@ -26,7 +27,7 @@ def run(API, host_name, need_privilege=False, time_out_sec = 180):
 
 # for unit testing of each technique
 if __name__ == '__main__':
-    API = empireAPI('empirec2', uname='empireadmin', passwd='Password123')
+    API = empireAPI(EMPIRE_SERVER, uname=EMPIRE_USER, passwd=EMPIRE_PWD)
     print(run(API, 'pec-WIN10PRO64')) # agent without high-integrity
     print(run(API, 'pec-WIN10PRO64', True)) # agent with high-integrity
     print(run(API, 'BLAH_BLAH')) # no such host
