@@ -10,7 +10,7 @@ from empire_settings import *
 def run(API, host_name, need_privilege=False, time_out_sec = 180):
     """
     Returns agent info in a dictionary when found, else None
-    :param API: empire API wrapper object
+    :param API: EmpireAPIWrapper.empireAPI object
     :param host_name: target's host name
     :param need_privilege: set to true if need privileged agent
     :param time_out_sec: time out in seconds
@@ -24,7 +24,7 @@ def run(API, host_name, need_privilege=False, time_out_sec = 180):
             return API.agent_info(agent_name)['agents'][0]
         time_out -= 1
         sleep(1)
-    return None
+    raise ValueError('Wait for agent timeout')
 
 
 # for unit testing of each technique
