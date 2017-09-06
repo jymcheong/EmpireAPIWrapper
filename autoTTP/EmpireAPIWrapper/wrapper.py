@@ -393,23 +393,19 @@ class agents(object):
         Return tasking results for the agent
         :param agent_name: Agent name as string
         :param task_id: task ID from agent tasking
-        :rtype: dict
+        :rtype: str or None if failed
         """
         final_url = '/api/agents/{}/results'.format(agent_name)
-        cont = True
-        result = {}
-        while cont:
+        result = None
+        while True:
             r = utilties._getURL(self, final_url)
             for result in r['results']:
                 if task_id == result['taskID']:
-                    if not result['results'].startswith('Job'): 
-                        cont = False
-                    if ('\n' in result['results']):
-                        cont = False
+                    if not result['results'].startswith('Job') or ('\n' in result['results']): 
+                        return result['results']
             time.sleep(1)
             time_out -= 1
-            if time_out < 0: 
-                return {'error': "time out!"}
+        
         return result
 
     def agent_get_name(self, hostname_or_ipaddr, high_integrity=False):

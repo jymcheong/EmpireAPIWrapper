@@ -15,11 +15,11 @@ if __name__ == "__main__":
 
         # this agent method is necessary we will want to target the correct host
         # procedure-script only provides hostname or IP address; not agentName, which is dynamic
-        AGENT_NAME = API.agent_get_name('pec-WIN10PRO64', True)
+        AGENT_NAME = API.agent_get_name('WIN-7JKBJEGBO38', False)
         print('agent name: ' + AGENT_NAME)
 
         # shell command example
-        DATA = {'Agent': AGENT_NAME, 'command': 'date'} # date is a rather slow command
+        DATA = {'Agent': AGENT_NAME, 'command': 'whoami'} # date is a rather slow command
         TASKID = API.agent_run_shell_cmd(AGENT_NAME, DATA)['taskID']
         print('new taskID = ' + str(TASKID))
         print(API.agent_get_results(AGENT_NAME, TASKID))

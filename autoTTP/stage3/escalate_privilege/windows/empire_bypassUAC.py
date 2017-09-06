@@ -19,7 +19,7 @@ def run(API, agent_name, module_name, listener=''):
                 opts.required_listener : listener
               }
     API.module_exec(module_name,options)
-    
+    empire_autocomplete.situational_awareness.netwo    
 
 # for unit testing of each technique
 if __name__ == '__main__':
