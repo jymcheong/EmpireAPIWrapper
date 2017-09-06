@@ -417,7 +417,7 @@ class agents(object):
         """
         agent_name = ""
         r = self.agents()
-        if "agents" not in r: 
+        if len(r['agents']) == 0: 
             return agent_name
         for agent in r['agents']:
             if agent['hostname'].lower()    == hostname_or_ipaddr.lower() or \

@@ -22,12 +22,12 @@ try:
     stage2.deliver_payload.windows.technique2.something('a','b')
     
     # wait for privilege agent
-    AGENTNAME = empire_wait_for_agent.run(API,'WIN-7JKBJEGBO38', True)
-    print(AGENTNAME) # blank means no agent found
+    agent = empire_wait_for_agent.run(API,'WIN-7JKBJEGBO38', True)
+    print(agent) # blank means no agent found
 
     # wait for non-privilege agent
-    AGENTNAME = empire_wait_for_agent.run(API,'WIN-7JKBJEGBO38', False)
-    print(AGENTNAME) # blank means no agent found    
+    agent = empire_wait_for_agent.run(API,'WIN-7JKBJEGBO38', False)
+    print(agent) # blank means no agent found    
     
 except Exception as e:
     print("Oops: " + str(e))

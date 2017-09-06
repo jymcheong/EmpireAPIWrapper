@@ -3,26 +3,28 @@ Relative path import gets complicated when we want things to
 run both at technique & procedural script (many folders above) layers, 
 so I used symbolic link which seems to work but it's ugly
 """
+from time import sleep
 from EmpireAPIWrapper import empireAPI
 from empire_settings import *
 
 def run(API, host_name, need_privilege=False, time_out_sec = 180):
     """
-    Returns agent name when found, else empty string
+    Returns agent info in a dictionary when found, else None
     :param API: empire API wrapper object
     :param host_name: target's host name
     :param need_privilege: set to true if need privileged agent
     :param time_out_sec: time out in seconds
-    :returns: str (empty string if can't find)
+    :return type: dict or None
     """
     time_out = time_out_sec
     agent_name = ""
     while time_out > 0:
         agent_name = API.agent_get_name(host_name, need_privilege)        
         if len(agent_name) > 0:
-            break
+            return API.agent_info(agent_name)['agents'][0]
         time_out -= 1
-    return agent_name
+        sleep(1)
+    return None
 
 
 # for unit testing of each technique
