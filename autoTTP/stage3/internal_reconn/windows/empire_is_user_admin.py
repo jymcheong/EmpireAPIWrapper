@@ -1,5 +1,5 @@
 """
-Return None if not admin. Otherwise it returns str value of either: Domain or Local
+Check if user is admin.
 For local user, check if s/he is in local administrator
 For domain user, it is possible that s/he is in both local &/or domain administrator group
 but we return the higher of the two types 
