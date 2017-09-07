@@ -1,7 +1,8 @@
 """
 Return None if not admin. Otherwise it returns str value of either: Domain or Local
 For local user, check if s/he is in local administrator
-For domain user, it is possible that s/he is in both local &/or domain administrator group 
+For domain user, it is possible that s/he is in both local &/or domain administrator group
+but we return the higher of the two types 
 """
 from EmpireAPIWrapper import empireAPI
 from empire_settings import EMPIRE_SERVER, EMPIRE_PWD, EMPIRE_USER
