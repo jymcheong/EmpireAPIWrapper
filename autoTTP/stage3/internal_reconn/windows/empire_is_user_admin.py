@@ -29,6 +29,7 @@ def run(API, agent_name):
             return "Local"
     else: # 2nd case, for a domain user, we return the higher privilege group ie. Domain
         target_username = agent_details['username'].split('\\')[1]
+        # options for the module, required options are prefixed
         opts = situational_awareness.network_powerview_get_group.options
         r = API.module_exec(situational_awareness.network_powerview_get_group.path, \
                             {opts.username: target_username,
