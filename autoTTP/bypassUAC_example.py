@@ -16,9 +16,6 @@ try:
 
     # we assume there's a non-privilege agent, some stager was executed before
     agent = empire_wait_for_agent.run(API,'WIN-7JKBJEGBO38', False, 5)
-    if agent is None:
-        raise ValueError('you need to have an initial agent')
-
     admin_type = empire_is_user_admin.run(API, agent['name']) 
     if admin_type is None:
         raise ValueError('BypassUAC can only be used with admin user')

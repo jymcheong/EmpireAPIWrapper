@@ -14,7 +14,7 @@ def run(API, host_name, need_privilege=False, time_out_sec = 180):
     :param host_name: target's host name
     :param need_privilege: set to true if need privileged agent
     :param time_out_sec: time out in seconds
-    :return type: dict or None
+    :return type: dict
     """
     time_out = time_out_sec
     agent_name = ""
