@@ -21,8 +21,7 @@ def run(API, agent_name):
     r = API.agent_get_results(agent_name, r['taskID'])    
     if r is None:
         raise ValueError('fail to run "net localgroup Administrator", check empire console')
-    # first case, for local user strip the hostname from hostname\username
-    # domain user will not be affected
+    # first case: for a local user (will always be host\username), check if s/he is local admin group
     if agent_details['hostname'] in agent_details['username']: 
         target_username = agent_details['username'].replace(agent_details['hostname']+'\\', "")
         if target_username in r:
