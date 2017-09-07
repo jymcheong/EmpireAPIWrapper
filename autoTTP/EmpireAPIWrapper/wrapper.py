@@ -423,11 +423,10 @@ class agents(object):
             if agent['hostname'].lower()    == hostname_or_ipaddr.lower() or \
                agent['external_ip'].lower() == hostname_or_ipaddr.lower() or \
                agent['internal_ip'].lower() == hostname_or_ipaddr.lower():
-                if high_integrity is False and high_integrity is False:
+                if agent['high_integrity'] == 0 and high_integrity is False:
                     return agent['name']
-                else:
-                    if agent['high_integrity'] > 0 and high_integrity is True:
-                        return agent['name']
+                elif agent['high_integrity'] > 0 and high_integrity is True:
+                    return agent['name']
                 continue
 
         return agent_name
