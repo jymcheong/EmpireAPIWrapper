@@ -1,7 +1,7 @@
-""" This module demonstrates procedure scripting
+""" This example demonstrates procedure scripting
     We aim to make procedure agnostic to techniques which could
-    be implemented with Empire, Metasploit or whatever pen-test framework that
-    supports APIs
+    be achieved with Empire, Metasploit or whatever pen-test framework that
+    supports APIs.
 """
 from EmpireAPIWrapper import empireAPI
 from empire_settings import *

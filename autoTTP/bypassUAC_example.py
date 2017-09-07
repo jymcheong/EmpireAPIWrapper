@@ -1,9 +1,9 @@
-""" This module demonstrates procedure scripting
-    We aim to make procedure as agnostic to techniques whenever possible
-    so that we can mix Empire, Metasploit or whatever pen-test framework that
-    supports APIs
+""" This example demonstrates procedure scripting
+    We aim to make procedure agnostic to techniques which could
+    be achieved with Empire, Metasploit or whatever pen-test framework that
+    supports APIs. In this case, we use Empire.
 """
-from empire_settings import *
+from empire_settings import EMPIRE_SERVER, EMPIRE_USER, EMPIRE_PWD
 from EmpireAPIWrapper import empireAPI
 from empire_autocomplete import privesc
 from stage2.external_c2 import empire_wait_for_agent

@@ -10,7 +10,7 @@
             "pythonPath": "${config:python.pythonPath}",
             "program": "${file}",
             "cwd": "${workspaceRoot}",
-            "env": {},
+            "env": {"PYTHONPATH":"/Users/jymcheong/Projects/EmpireAPIWrapper/autoTTP"},
             "envFile": "${workspaceRoot}/.env",
             "debugOptions": [
                 "WaitOnAbnormalExit",

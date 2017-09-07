@@ -22,6 +22,7 @@ def run(API, agent_name):
     localadmin_query_result = API.agent_get_results(agent_name, r['taskID'])    
     if localadmin_query_result is None:
         raise ValueError('fail to run "net localgroup Administrator", check empire console')
+    
     # first case: for a local user (will always be host\username), check if s/he is local admin group
     if agent_details['hostname'] in agent_details['username']: 
         target_username = agent_details['username'].replace(agent_details['hostname']+'\\', "")
@@ -32,9 +33,10 @@ def run(API, agent_name):
         # options for the module, required options are prefixed
         opts = situational_awareness.network_powerview_get_group.options
         r = API.module_exec(situational_awareness.network_powerview_get_group.path, \
-                            {opts.username: target_username,
-                             opts.required_agent: agent_name})
-        if 'Admin' in API.agent_get_results(agent_name, r['taskID']): # there are other types of admin eg. Enterprise, Schema Admin...
+                            { opts.username: target_username,
+                              opts.required_agent: agent_name})
+        # there are other types of admin eg. Enterprise, Schema Admin...
+        if 'Admin' in API.agent_get_results(agent_name, r['taskID']): 
             return 'Domain'
         # 3rd case, a domain user could be added to local admin group
         if agent_details['username'] in localadmin_query_result:
@@ -44,4 +46,5 @@ def run(API, agent_name):
 if __name__ == '__main__': # unit test
     API = empireAPI(EMPIRE_SERVER, uname=EMPIRE_USER, passwd=EMPIRE_PWD)
     # run(API, 'fuck') # exception if no agent of that name
-    print(run(API, 'BC4539HX'))
+    # to test this unit, we setup VMs (client + domain) to test the 3 cases
+    print(run(API, '3LNCZ41M'))
