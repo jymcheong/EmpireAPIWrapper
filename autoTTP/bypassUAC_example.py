@@ -9,7 +9,8 @@ from empire_autocomplete import privesc
 from stage2.external_c2 import empire_wait_for_agent
 from stage3.internal_reconn.windows import empire_is_user_admin
 from stage3.escalate_privilege.windows import empire_bypassUAC
-try other stuff use a common API context instead of creating a new one per technique
+try: 
+    #use a common API context instead of a new instance per technique script
     API = empireAPI(EMPIRE_SERVER, uname=EMPIRE_USER, passwd=EMPIRE_PWD)
 
     # we assume there's a non-privilege agent, some stager was executed before
