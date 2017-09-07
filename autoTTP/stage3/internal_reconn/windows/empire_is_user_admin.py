@@ -1,7 +1,7 @@
 """
 Check if user is admin.
 For local user, check if s/he is in local administrator
-For domain user, it is possible that s/he is in both local &/or domain administrator group
+For domain user, it is possible to be in both local &/or domain administrator group
 but we return the higher of the two types 
 """
 from EmpireAPIWrapper import empireAPI
@@ -13,7 +13,7 @@ def run(API, agent_name):
     Returns admin type, otherwise None
     :param API: EmpireAPIWrapper object
     :param agent_name: name of agent
-    :return type: str
+    :return type: str or None
     """
     agent_details = API.agent_info(agent_name)['agents'][0]
     # either local/domain user, still check if user is in local administrators

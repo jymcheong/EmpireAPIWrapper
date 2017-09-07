@@ -11,7 +11,7 @@ from stage3.internal_reconn.windows import empire_is_user_admin
 from stage3.escalate_privilege.windows import empire_bypassUAC
 
 try:
-    # use a common API context instead of creating new ones within Empire techniques
+    # use a common API context instead of creating a new one per technique
     API = empireAPI(EMPIRE_SERVER, uname=EMPIRE_USER, passwd=EMPIRE_PWD)
 
     # we assume there's a non-privilege agent, some stager was executed before
