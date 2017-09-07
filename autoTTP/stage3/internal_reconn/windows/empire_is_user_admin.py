@@ -19,13 +19,13 @@ def run(API, agent_name):
     # either local/domain user, still check if user is in local administrators
     opts = {'Agent': agent_name, 'command': 'net localgroup Administrators'}
     r = API.agent_run_shell_cmd(agent_name, opts)
-    r = API.agent_get_results(agent_name, r['taskID'])    
-    if r is None:
+    localadmin_query_result = API.agent_get_results(agent_name, r['taskID'])    
+    if localadmin_query_result is None:
         raise ValueError('fail to run "net localgroup Administrator", check empire console')
     # first case: for a local user (will always be host\username), check if s/he is local admin group
     if agent_details['hostname'] in agent_details['username']: 
         target_username = agent_details['username'].replace(agent_details['hostname']+'\\', "")
-        if target_username in r:
+        if target_username in localadmin_query_result:
             return "Local"
     else: # 2nd case, for a domain user, we return the higher privilege group ie. Domain
         target_username = agent_details['username'].split('\\')[1]
@@ -33,12 +33,14 @@ def run(API, agent_name):
         r = API.module_exec(situational_awareness.network_powerview_get_group.path, \
                             {opts.username: target_username,
                              opts.required_agent: agent_name})
-        r = API.agent_get_results(agent_name, r['taskID'])
-        if 'Admin' in r: # there are other types of admin eg. Enterprise, Schema Admin...
+        if 'Admin' in API.agent_get_results(agent_name, r['taskID']): # there are other types of admin eg. Enterprise, Schema Admin...
             return 'Domain'
-    return None
+        # 3rd case, a domain user could be added to local admin group
+        if agent_details['username'] in localadmin_query_result:
+            return 'Local'
+    return None # too bad, standard user
 
-if __name__ == '__main__':
+if __name__ == '__main__': # unit test
     API = empireAPI(EMPIRE_SERVER, uname=EMPIRE_USER, passwd=EMPIRE_PWD)
     # run(API, 'fuck') # exception if no agent of that name
-    run(API, '59RXB1TY')
+    print(run(API, 'BC4539HX'))
